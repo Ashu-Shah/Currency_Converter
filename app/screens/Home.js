@@ -3,6 +3,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import {Container} from '../components/Container/index';
 import {StatusBar, Text, View, Platform} from 'react-native';
 import { Constants } from 'expo';
+import {Logo} from '../components/Logo/index';
 
 const styles = EStyleSheet.create({
     statusBar: {
@@ -16,6 +17,6 @@ export default () => (
     <Container>
         <StatusBar hidden={false} translucent={false} barStyle="light-content"/>
         <View style={styles.statusBar}/>
-        <Text style={{color: 'red'}}>Hello Baby...</Text>
+        <Logo/>
     </Container>
 );
