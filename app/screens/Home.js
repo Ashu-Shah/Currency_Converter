@@ -5,12 +5,12 @@ import {StatusBar, Text, View, Platform} from 'react-native';
 import { Constants } from 'expo';
 import {Logo} from '../components/Logo/index';
 import {InputWithButton} from '../components/TextInput/index';
+import {ClearButton} from '../components/Buttons/index';
 
 const styles = EStyleSheet.create({
     statusBar: {
         paddingTop: Platform.OS == 'android' ? Constants.statusBarHeight : 0,
         //backgroundColor: 'pink'
-
     }
 });
 
@@ -33,6 +33,10 @@ class Home extends Component{
         console.log('Press Quote Currency')
     };
 
+    handleSwapeCurrency = () => {
+        console.log('Swape Currency')
+    };
+
     render() {
         return(
             <Container>
@@ -51,6 +55,10 @@ class Home extends Component{
                     editable={false}
                     onPress={this.handlePressQuoteCurency}
                     value={TEMP_QUOTE_PRICE}
+                />
+                <ClearButton
+                    onPress={this.handleSwapeCurrency}
+                    text="Reverse Currencies"
                 />
             </Container>
         )
