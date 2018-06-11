@@ -6,6 +6,7 @@ import { Constants } from 'expo';
 import {Logo} from '../components/Logo/index';
 import {InputWithButton} from '../components/TextInput/index';
 import {ClearButton} from '../components/Buttons/index';
+import {LastConverted} from '../components/Text/index';
 
 const styles = EStyleSheet.create({
     statusBar: {
@@ -18,6 +19,8 @@ const TEMP_BASE_CURRENCY = 'USD';
 const TEMP_QUOTE_CURRENCY = 'GBP';
 const TEMP_BASE_PRICE = '100';
 const TEMP_QUOTE_PRICE = '79.74';
+const TEMP_CONVERSION_RATE = 0.7974;
+const TEMP_CONVERSION_DATE = new Date();
 
 class Home extends Component{
 
@@ -55,6 +58,12 @@ class Home extends Component{
                     editable={false}
                     onPress={this.handlePressQuoteCurency}
                     value={TEMP_QUOTE_PRICE}
+                />
+                <LastConverted
+                    base={TEMP_BASE_CURRENCY}
+                    quote={TEMP_QUOTE_CURRENCY}
+                    conversionRate={TEMP_CONVERSION_RATE}
+                    date={TEMP_CONVERSION_DATE}
                 />
                 <ClearButton
                     onPress={this.handleSwapeCurrency}
