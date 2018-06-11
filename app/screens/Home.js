@@ -21,15 +21,15 @@ const TEMP_QUOTE_PRICE = '79.74';
 
 class Home extends Component{
 
-    handleChangeText(text) {
+    handleChangeText = (text) => {
         console.log('change text', text)
-    }
+    };
 
-    handlePressBaseCurrency() {
+    handlePressBaseCurrency = () => {
         console.log('Press Base Currency')
     };
 
-    handlePressQuoteCurency() {
+    handlePressQuoteCurency = () => {
         console.log('Press Quote Currency')
     };
 
