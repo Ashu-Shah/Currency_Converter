@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import EStyleSheet from 'react-native-extended-stylesheet';
 import {Container} from '../components/Container/index';
 import {StatusBar, Text, View, Platform} from 'react-native';
 import { Constants } from 'expo';
@@ -7,13 +6,7 @@ import {Logo} from '../components/Logo/index';
 import {InputWithButton} from '../components/TextInput/index';
 import {ClearButton} from '../components/Buttons/index';
 import {LastConverted} from '../components/Text/index';
-
-const styles = EStyleSheet.create({
-    statusBar: {
-        paddingTop: Platform.OS == 'android' ? Constants.statusBarHeight : 0,
-        //backgroundColor: 'pink'
-    }
-});
+import {Header} from '../components/Header/index';
 
 const TEMP_BASE_CURRENCY = 'USD';
 const TEMP_QUOTE_CURRENCY = 'GBP';
@@ -40,11 +33,15 @@ class Home extends Component{
         console.log('Swape Currency')
     };
 
+    handleOptionPress = () => {
+        alert('Running');
+    };
+
     render() {
         return(
             <Container>
-                <StatusBar hidden={false} translucent={false} barStyle="light-content"/>
-                <View style={styles.statusBar}/>
+                <StatusBar backgroundColo="red" hidden={false} translucent={false} barStyle="dark-content"/>
+                <Header onPress={this.handleOptionPress}/>
                 <Logo/>
                 <InputWithButton
                     buttonText={TEMP_BASE_CURRENCY}
