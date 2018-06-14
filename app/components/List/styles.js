@@ -22,12 +22,10 @@ const styles = EStyleSheet.create({
         height: StyleSheet.hairlineWidth
     },
     icon: {
-        //backgroundColor: 'orange',
-        borderWidth: 1,
-        borderColor: '$border',
         width: 30,
         height: 30,
         borderRadius: 15,
+        backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center'
     },
