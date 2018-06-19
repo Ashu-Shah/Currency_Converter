@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {ScrollView, View, Platform} from 'react-native';
 import { Constants } from 'expo';
 import {ListItem, Separator} from '../components/List/index';
@@ -10,8 +11,12 @@ const ICON_SIZE = 23;
 
 class Options extends Component{
 
+    static propTypes = {
+        navigation: PropTypes.object
+    };
+
     handlePressTheme = () => {
-        alert('press theme');
+        this.props.navigation.navigate('Themes');
     };
 
     handleSitePress = () => {
@@ -21,7 +26,6 @@ class Options extends Component{
     render() {
         return(
             <ScrollView>
-                <View style={{backgroundColor: "#C2185B", height: Constants.statusBarHeight}} />
                 <ListItem
                     text="Theme"
                     onPress={this.handlePressTheme}

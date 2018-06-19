@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {ScrollView, View} from 'react-native';
 import { Constants } from 'expo';
 import {ListItem, Separator} from '../components/List/index';
@@ -12,14 +13,18 @@ const styles = EStyleSheet.create({
 });
 
 class Themes extends Component{
+
+    static propTypes = {
+        navigation: PropTypes.object
+    };
+
     handleThemePress = (color) => {
-        console.log('Theme Press', color);
+        this.props.navigation.goBack();
     };
 
     render() {
         return (
             <ScrollView>
-                <View style={{backgroundColor: "#C2185B", height: Constants.statusBarHeight}} />
                 <ListItem
                     text="Blue"
                     onPress={() => this.handleThemePress(styles.$blue)}
