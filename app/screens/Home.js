@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {Container} from '../components/Container/index';
 import {StatusBar, KeyboardAvoidingView} from 'react-native';
-import { Constants } from 'expo';
 import {Logo} from '../components/Logo/index';
 import {InputWithButton} from '../components/TextInput/index';
 import {ClearButton} from '../components/Buttons/index';
@@ -17,16 +17,20 @@ const TEMP_CONVERSION_DATE = new Date();
 
 class Home extends Component{
 
+    static propTypes = {
+        navigation: PropTypes.object
+    };
+
     handleChangeText = (text) => {
         console.log('change text', text)
     };
 
     handlePressBaseCurrency = () => {
-        console.log('Press Base Currency')
+        this.props.navigation.navigate('CurrencyList', {title: 'Base Currency'});
     };
 
     handlePressQuoteCurency = () => {
-        console.log('Press Quote Currency')
+        this.props.navigation.navigate('CurrencyList', {title: 'Quote Currency'});
     };
 
     handleSwapeCurrency = () => {

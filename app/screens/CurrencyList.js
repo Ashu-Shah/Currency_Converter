@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {View, FlatList, StatusBar} from 'react-native';
 import currencies from '../data/currencies';
-import { Constants } from 'expo';
 import {ListItem, Separator} from '../components/List/index';
 
 const TEMP_CURRENT_CURRENCY = 'PAK';
@@ -12,8 +12,12 @@ class CurrencyList extends Component{
     //    super(props);
     //}
 
-    handlePress(item) {
-        console.log('Press Row ==>', item)
+    static propTypes = {
+        navigation: PropTypes.object
+    };
+
+    handlePress = () => {
+        this.props.navigation.goBack(null);
     };
 
     renderItem = ({item}) => {
@@ -21,7 +25,7 @@ class CurrencyList extends Component{
             <ListItem
                 text={item}
                 selected={item == TEMP_CURRENT_CURRENCY}
-                onPress={() => this.handlePress(item)}
+                onPress={this.handlePress}
             />
         )
     };
@@ -29,7 +33,6 @@ class CurrencyList extends Component{
     render() {
         return (
             <View style={{flex: 1}}>
-                <View style={{backgroundColor: "#C2185B", height: Constants.statusBarHeight}} />
                 <FlatList
                     data={currencies}
                     renderItem={this.renderItem}
