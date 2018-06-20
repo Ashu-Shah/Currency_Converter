@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {ScrollView, View, Platform} from 'react-native';
+import {ScrollView, View, Platform, Linking, Alert} from 'react-native';
 import { Constants } from 'expo';
 import {ListItem, Separator} from '../components/List/index';
 import {Ionicons} from '@expo/vector-icons';
@@ -20,7 +20,9 @@ class Options extends Component{
     };
 
     handleSitePress = () => {
-        alert('press site');
+        Linking.openURL('http://fixer.io').catch(() => {
+            Alert.alert('Error', 'An error occured.', [{text: 'Ok'}], {cancelable: false})
+        })
     };
 
     render() {
