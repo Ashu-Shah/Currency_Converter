@@ -1,15 +1,23 @@
 import React, {Component} from 'react';
-import {View, Text, Keyboard, Animated, Platform} from 'react-native';
+import {View, Text, Keyboard, Animated, Platform, StyleSheet} from 'react-native';
+import PropTypes from 'prop-types';
 import LogoStyles from './LogoStyles';
 
 const ANIMATION_DURATION = 250;
 
 class Logo extends Component{
+
+    static propTypes = {
+        tintColor: PropTypes.string
+    };
+
     constructor(props) {
         super(props);
 
-        this.containerImageWidth = new Animated.Value(LogoStyles.$largeContainerSize);
-        this.imageWidth = new Animated.Value(LogoStyles.$largeImageSize);
+        this.state = {
+            containerImageWidth: new Animated.Value(LogoStyles.$largeContainerSize),
+            imageWidth: new Animated.Value(LogoStyles.$largeImageSize)
+        };
     };
 
     componentWillMount() {
@@ -24,11 +32,11 @@ class Logo extends Component{
 
     keyboardShow = () => {
         Animated.parallel([
-            Animated.timing(this.containerImageWidth, {
+            Animated.timing(this.state.containerImageWidth, {
                 toValue: LogoStyles.$smallContainerSize,
                 duration: ANIMATION_DURATION
             }),
-            Animated.timing(this.imageWidth, {
+            Animated.timing(this.state.imageWidth, {
                 toValue: LogoStyles.$smallImageSize,
                 duration: ANIMATION_DURATION
             })
@@ -37,11 +45,11 @@ class Logo extends Component{
 
     keyboardHide = () => {
         Animated.parallel([
-            Animated.timing(this.containerImageWidth, {
+            Animated.timing(this.state.containerImageWidth, {
                 toValue: LogoStyles.$largeContainerSize,
                 duration: ANIMATION_DURATION
             }),
-            Animated.timing(this.imageWidth, {
+            Animated.timing(this.state.imageWidth, {
                 toValue: LogoStyles.$largeImageSize,
                 duration: ANIMATION_DURATION
             })
@@ -52,17 +60,27 @@ class Logo extends Component{
 
         let containerImageStyle = [
             LogoStyles.imageBackground,
-            {width: this.containerImageWidth, height: this.containerImageWidth}
+            {width: this.state.containerImageWidth, height: this.state.containerImageWidth}
         ];
         let imageStyle = [
             LogoStyles.logo,
-            {width: this.imageWidth, height: this.imageWidth}
+            {width: this.state.imageWidth},
+            this.props.tintColor ? {tintColor: this.props.tintColor} : null
         ];
 
         return (
             <View style={LogoStyles.container}>
                 <Animated.View style={containerImageStyle}>
-                    <Animated.Image source={require('../../assets/images/logo-merge.png')} style={imageStyle} resizeMode="contain"/>
+                    <Animated.Image
+                        resizeMode="contain"
+                        style={[StyleSheet.absoluteFill, containerImageStyle]}
+                        source={require('../../assets/images/background.png')}
+                    />
+                    <Animated.Image
+                        resizeMode="contain"
+                        style={imageStyle}
+                        source={require('../../assets/images/logo.png')}
+                    />
                 </Animated.View>
                 <Text style={LogoStyles.logoTitle}>Currency Converter</Text>
             </View>

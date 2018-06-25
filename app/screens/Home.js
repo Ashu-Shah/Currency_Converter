@@ -21,7 +21,8 @@ class Home extends Component{
         amount: PropTypes.number,
         conversionRate: PropTypes.number,
         isFetching: PropTypes.bool,
-        lastConvertedDate: PropTypes.object
+        lastConvertedDate: PropTypes.object,
+        primaryColor: PropTypes.string
     };
 
     handleChangeText = (amount) => {
@@ -50,23 +51,25 @@ class Home extends Component{
             quotePrice = '...'
         }
         return(
-            <Container>
+            <Container backgroundColor={this.props.primaryColor}>
                 <StatusBar backgroundColo="red" hidden={false} translucent={false} barStyle="dark-content"/>
                 <Header onPress={this.handleOptionPress}/>
                 <KeyboardAvoidingView behavior="padding">
-                    <Logo/>
+                    <Logo tintColor={this.props.primaryColor}/>
                     <InputWithButton
                         buttonText={this.props.baseCurrency}
                         onPress={this.handlePressBaseCurrency}
                         defaultValue={this.props.amount.toString()}
                         keyboardType="numeric"
                         onChangeText={this.handleChangeText}
+                        textColor={this.props.primaryColor}
                     />
                     <InputWithButton
                         buttonText={this.props.quoteCurrency}
                         editable={false}
                         onPress={this.handlePressQuoteCurency}
                         value={quotePrice}
+                        textColor={this.props.primaryColor}
                     />
                     <LastConverted
                         base={this.props.baseCurrency}
@@ -95,7 +98,8 @@ const mapStateToProps = (state) => {
         amount: state.currencies.amount,
         conversionRate: rates[quoteCurrency] || 0,
         isFetching: conversionSelector.isFetching,
-        lastConvertedDate: conversionSelector.date ? new Date(conversionSelector.date) : new Date()
+        lastConvertedDate: conversionSelector.date ? new Date(conversionSelector.date) : new Date(),
+        primaryColor: state.theme.primaryColor
     };
 };
 
