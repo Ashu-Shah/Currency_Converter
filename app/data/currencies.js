@@ -16,7 +16,7 @@ export default [
     'ILS',
     'INR',
     'JPY',
-    'PAK',
+    'PKR',
     'KRW',
     'MXN',
     'MYR',
