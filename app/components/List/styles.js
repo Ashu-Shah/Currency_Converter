@@ -30,7 +30,7 @@ const styles = EStyleSheet.create({
         alignItems: 'center'
     },
     iconVisible: {
-        backgroundColor: '$primaryBlue'
+        backgroundColor: '$primaryBlackish'
     },
     checkIcon: {
         width: 18

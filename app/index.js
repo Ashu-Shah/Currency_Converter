@@ -11,10 +11,11 @@ import Navigator from './config/routes';
 import store from './config/store';
 
 EStyleSheet.build({
-    $primaryBlue: '#4F6D7A',
-    $primaryOrange: '#D57A66',
-    $primaryGreen: '#00BD9D',
-    $primaryPurple: '#9E768F',
+    $primaryBlackish: '#2a2a2a',
+    $primaryBlue: '#2980b9',
+    $primaryOrange: '#e67e22',
+    $primaryGreen: '#16a085',
+    $primaryPurple: '#8e44ad',
 
     $white: '#fff',
     $lightGray: '#f0f0f0',

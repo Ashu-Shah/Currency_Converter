@@ -3,7 +3,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 const ContainerStyles = EStyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '$primaryBlue',
+        backgroundColor: '$primaryBlackish',
         justifyContent: 'center',
         alignItems: 'center'
     }

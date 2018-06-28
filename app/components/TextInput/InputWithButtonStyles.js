@@ -30,7 +30,7 @@ const InputWithButtonStyles = EStyleSheet.create({
     buttonText: {
         fontSize: 20,
         fontWeight: '600',
-        color: '$primaryBlue',
+        color: '$primaryBlackish',
         paddingHorizontal: 16
     },
     saperator: {

@@ -9,6 +9,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import {changePrimaryColor} from '../actions/theme';
 
 const styles = EStyleSheet.create({
+    $black: '$primaryBlackish',
     $blue: '$primaryBlue',
     $orange: '$primaryOrange',
     $green: '$primaryGreen',
@@ -30,6 +31,13 @@ class Themes extends Component{
     render() {
         return (
             <ScrollView>
+                <ListItem
+                    text="Blackish"
+                    onPress={() => this.handleThemePress(styles.$black)}
+                    selected
+                    checkmark={false}
+                    iconBackground={styles.$black}
+                />
                 <ListItem
                     text="Blue"
                     onPress={() => this.handleThemePress(styles.$blue)}
