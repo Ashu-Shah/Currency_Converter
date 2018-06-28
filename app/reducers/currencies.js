@@ -10,7 +10,7 @@ import {
 
 const initialState = {
     baseCurrency: 'USD',
-    quoteCurrency: 'GBP',
+    quoteCurrency: 'PKR',
     amount: 100,
     conversions: {},
     error: null
@@ -39,7 +39,13 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 baseCurrency: state.quoteCurrency,
-                quoteCurrency: state.baseCurrency
+                quoteCurrency: state.baseCurrency,
+                conversions: {
+                    ...state.conversions,
+                    [state.quoteCurrency]:{
+                        isFetching: true
+                    }
+                }
             };
         case CHANGE_CURRENCY_AMOUNT:
             return {
@@ -65,12 +71,12 @@ const reducer = (state = initialState, action) => {
         case CONVERSION_RESULT:
             return {
                 ...state,
-                baseCurrency: action.result.base,
+                baseCurrency: action.results[`${state.baseCurrency}_${state.quoteCurrency}`].fr,
                 conversions: {
                     ...state.conversions,
-                    [action.result.base]: {
+                    [action.results[`${state.baseCurrency}_${state.quoteCurrency}`].fr]: {
                         isFetching: false,
-                        ...action.result
+                        ...action.results
                     }
                 }
             };

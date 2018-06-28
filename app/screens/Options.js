@@ -4,7 +4,7 @@ import {ScrollView, View, Platform, Linking, Alert} from 'react-native';
 import { Constants } from 'expo';
 import {ListItem, Separator} from '../components/List/index';
 import {Ionicons} from '@expo/vector-icons';
-import {connectAlert} from '../components/Alert/index';
+//import {connectAlert} from '../components/Alert/index';
 
 const ICON_PREFIX = Platform.OS == 'ios' ? 'ios' : 'md';
 const ICON_COLOR = '#868686';
@@ -22,12 +22,14 @@ class Options extends Component{
     };
 
     handleSitePress = () => {
-        //Linking.openURL('http://fixer.io').catch(() => {
-        //    Alert.alert('Error', 'An error occured.', [{text: 'Ok'}], {cancelable: false})
-        //})
-        Linking.openURL('http://fixer.io').catch(() =>
-            this.props.alertWithType('error', 'Sorry!', "Fixer.io can't be opened right now.")
-        );
+        Linking.openURL('http://fixer.io').catch(() =>{
+            Alert.alert(
+                "Sorry",
+                "Fixer.io can't be opened right now.",
+                [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+                {cancelable: false}
+            );
+        });
     };
 
     render() {
@@ -50,4 +52,4 @@ class Options extends Component{
     }
 }
 
-export default connectAlert(Options);
+export default Options;

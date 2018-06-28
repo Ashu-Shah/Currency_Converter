@@ -2,12 +2,12 @@ import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {Provider} from 'react-redux';
 
-import Home from './screens/Home';
-import CurrencyList from './screens/CurrencyList';
-import Options from './screens/Options';
-import Themes from './screens/Themes';
+//import Home from './screens/Home';
+//import CurrencyList from './screens/CurrencyList';
+//import Options from './screens/Options';
+//import Themes from './screens/Themes';
 import Navigator from './config/routes';
-import {AlertProvider} from './components/Alert/index';
+//import {AlertProvider} from './components/Alert/index';
 import store from './config/store';
 
 EStyleSheet.build({
@@ -28,8 +28,6 @@ EStyleSheet.build({
 
 export default () => (
     <Provider store={store}>
-        <AlertProvider>
-            <Navigator onNavigationStateChange={null}/>
-        </AlertProvider>
+        <Navigator onNavigationStateChange={null}/>
     </Provider>
 )

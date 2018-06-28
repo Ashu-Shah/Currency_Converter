@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {Container} from '../components/Container/index';
-import {StatusBar, KeyboardAvoidingView} from 'react-native';
+import {StatusBar, KeyboardAvoidingView, Alert} from 'react-native';
 import {Logo} from '../components/Logo/index';
 import {InputWithButton} from '../components/TextInput/index';
 import {ClearButton} from '../components/Buttons/index';
 import {LastConverted} from '../components/Text/index';
 import {Header} from '../components/Header/index';
-import {connectAlert} from '../components/Alert/index';
+//import {connectAlert} from '../components/Alert/index';
 import {swapCurrency, changeCurrencyAmount, getInitialConversion} from '../actions/currencies';
 
 class Home extends Component{
@@ -24,8 +24,8 @@ class Home extends Component{
         isFetching: PropTypes.bool,
         lastConvertedDate: PropTypes.object,
         primaryColor: PropTypes.string,
-        alertWithType: PropTypes.func,
-        currencyError: PropTypes.object
+        //alertWithType: PropTypes.func,
+        currencyError: PropTypes.string
     };
 
     componentWillMount() {
@@ -35,7 +35,13 @@ class Home extends Component{
     componentWillReceiveProps(nextProps) {
         console.log('nextProps', nextProps);
         if(nextProps.currencyError && nextProps.currencyError !== this.props.currencyError) {
-            this.props.alertWithType('error', 'Error', nextProps.currencyError.info);
+            Alert.alert(
+                'Error',
+                nextProps.currencyError,
+                [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+                {cancelable: false}
+            );
+            //this.props.alertWithType('error', 'Error', nextProps.currencyError.info);
         }
     }
 
@@ -105,17 +111,18 @@ const mapStateToProps = (state) => {
     const baseCurrency = state.currencies.baseCurrency;
     const quoteCurrency = state.currencies.quoteCurrency;
     const conversionSelector = state.currencies.conversions[baseCurrency] || {};
-    const rates = conversionSelector.rates || {};
+    const conversionDate = conversionSelector.date || '';
+    const rates = conversionSelector[`${baseCurrency}_${quoteCurrency}`] || {};
     return{
         baseCurrency,
         quoteCurrency,
         amount: state.currencies.amount,
-        conversionRate: rates[quoteCurrency] || 0,
+        conversionRate: rates.val && rates.val[conversionDate] || 0,
         isFetching: conversionSelector.isFetching,
-        lastConvertedDate: conversionSelector.date ? new Date(conversionSelector.date) : new Date(),
+        lastConvertedDate: conversionSelector.date ? new Date(conversionDate) : new Date(),
         primaryColor: state.theme.primaryColor,
         currencyError: state.currencies.error
     };
 };
 
-export default connect(mapStateToProps)(connectAlert(Home));
+export default connect(mapStateToProps)(Home);
