@@ -1,7 +1,19 @@
 {
   "expo": {
+    "name": "Currency Converter",
     "sdkVersion": "27.0.0",
+    "slug": "CurrencyConverter",
     "orientation": "portrait",
-    "privacy": "public"
+    "description": "I have completed this app using the great tutorial made by Spencer Carli https://learn.handlebarlabs.com/courses/enrolled/175915. Thumbs up for this guy",
+    "privacy": "public",
+    "version": "1.0.0",
+    "icon": "./app/assets/images/appIcon.png",
+    "splash": {
+      "image": "./app/assets/images/splash.png",
+      "resizeMode": "cover"
+    },
+    "loading": {
+      "hideExponentText": true
+    }
   }
 }
