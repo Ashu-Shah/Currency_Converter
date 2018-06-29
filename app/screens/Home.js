@@ -100,6 +100,7 @@ class Home extends Component{
                     <ClearButton
                         onPress={this.handleSwapeCurrency}
                         text="Reverse Currencies"
+                        disabled={this.props.isFetching}
                     />
                 </KeyboardAvoidingView>
             </Container>
